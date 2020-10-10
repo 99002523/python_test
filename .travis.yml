@@ -1,27 +1,25 @@
   
 language: python
+# python versions to use during the tests
 python:
-  - "3.5"
+    - "2.7"
+    - "3.4"
 # command to install dependencies
 install:
-  #- pip install -r requirements.txt
-  - pip install codecov
-    #For Coverage Report
+    - pip install -r requirements.txt
 # command to run tests
 script:
-  - export PYTHONPATH=$PYTHONPATH:$(pwd)
-  - python generator_test.py
-  - coverage run generator_test.py
+    - py.test --cov-report term-missing --cov=maths
+    - py.test --doctest-modules --cov=maths3 --cov-report term-missing
+#    - py.test
 branches:
   only:
    - master
 after_success:
     - coveralls
-    - codecov
-    
 notifications:
   email:
     recipients:
-        allurprasanna@gmail.com
+      - allurprasanna@gmail.com
     on_success: always
     on_failure: always
