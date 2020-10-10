@@ -31,4 +31,5 @@ jobs:
   
     - name: Test with pytest
       run: |
-        pytest
+        python -m pytest -v tests/test_generator.py
+
