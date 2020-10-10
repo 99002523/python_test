@@ -22,6 +22,6 @@ after_success:
 notifications:
   email:
     recipients:
-   #   - prithvisekhp@xxx.com #default sends to registered email
+        allurprasanna@gmail.com
     on_success: always
     on_failure: always
