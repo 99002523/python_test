@@ -1,24 +1,27 @@
+  
 language: python
-# python versions to use during the tests
 python:
-    - "2.7"
-    - "3.4"
+  - "3.5"
 # command to install dependencies
 install:
-    - pip install -r requirements.txt
+  - pip install -r requirements.txt
+  - pip install codecov
+    #For Coverage Report
 # command to run tests
 script:
-    - py.test --cov-report term-missing --cov=maths
-    - py.test --doctest-modules --cov=maths3 --cov-report term-missing
-#    - py.test
+  - export PYTHONPATH=$PYTHONPATH:$(pwd)
+  - python palindrom-test.py
+  - coverage run palindrom-test.py
 branches:
   only:
    - master
 after_success:
     - coveralls
+    - codecov
+    
 notifications:
   email:
     recipients:
-      - khelil.sator.git@gmail.com
+   #   - prithvisekhp@xxx.com #default sends to registered email
     on_success: always
     on_failure: always
